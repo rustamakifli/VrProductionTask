@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block content %}
+<main>
+    <div class="about-area2 gray-bg pt-60 pb-60">
+        <div class="container">
+                <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="whats-news-wrapper">
+                        <!-- Heading & Nav Button -->
+                            <!-- Tab content -->
+                            <div class="row">
+                                <div class="col-12">
+                                    <!-- Nav Card -->
+                                    <form action="" method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        {{ form_pers_info.non_field_errors }}
+										{% for field in reg_form %}
+								    		<div class="form-group">
+                                                {% if field.name == "username" %}
+                                                {% render_field field %}
+                                                {% endif %}
+                                                {% if field.name == "first_name" %}
+                                                {% render_field field %}
+                                                {% endif %}
+                                                {% if field.name == "last_name" %}
+                                                {% render_field field %}
+                                                {% endif %}
+                                                {% if field.name == "image" %}
+                                                {% render_field field %}
+                                                {% endif %}
+                                                {% if field.name == "email" %}
+                                                {% render_field field %}
+                                                {% endif %}
+                                                {% if field.name == "phone_number" %}
+                                                {% render_field field %}
+                                                {% endif %}
+                                                {% if field.name == "birthdate" %}
+                                                {% render_field field %}
+                                                {% endif %}
+                                                {% if field.name == "sex" %}
+                                                {% render_field field %}
+                                                {% endif %}
+                                                {% if field.name == "password" %}
+                                                {% render_field field %}
+                                                {% endif %}
+                                                {% if field.name == "confirm_password" %}
+                                                {% render_field field %}
+                                                {% endif %}
+												<ul>
+													{% for error in field.errors %}
+				    									<li>{{error}}</li>
+													{% endfor %}
+												</ul>
+											</div>
+										{% endfor %}
+                                        <button type="submit" name='submit' class="genric-btn info-border mt-10"
+														value="personal_info_submit">Save</button>
+                                    </form>
+                                <!-- End Nav Card -->
+                                </div>
+                            </div>
+                    </div>
+                    </div>
+                    
+                </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<main>
+    <div class="about-area2 gray-bg pt-60 pb-60">
+        <div class="container">
+                <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="whats-news-wrapper">
+                        <!-- Heading & Nav Button -->
+                            <!-- Tab content -->
+                            <div class="row">
+                                <div class="col-12">
+                                    <!-- Nav Card -->
+                                    <form action="" method="post">
+                                        {% csrf_token %}
+                                        {{ form_pers_info.non_field_errors }}
+										{% for field in form_pers_info %}
+								    		<div class="form-group">
+                                                {{ field.label_tag }}
+
+                                                {% if field.name in form_pers_info.initial %}
+                                                {{ form_pers_info.initial.field.name }}
+                                            {% else %}
+                                                {{ field }}
+                                            {% endif %}												<ul>
+													{% for error in field.errors %}
+				    									<li>{{error}}</li>
+													{% endfor %}
+												</ul>
+											</div>
+										{% endfor %}
+                                        <button type="submit" name='submit' class="genric-btn info-border mt-10"
+														value="personal_info_submit">Save</button>
+                                    </form>
+                                <!-- End Nav Card -->
+                                </div>
+                            </div>
+                    </div>
+                    </div>
+                    
+                </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

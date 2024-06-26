@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  postgres:
+    container_name: postgres-db
+    image: postgres:13-alpine
+    ports:
+      - 5432:5432 # Bind host port 5432 to PostgreSQL port 5432
+    volumes:
+      - ./pgdb:/var/lib/pgdb/data
+    env_file: .env
+    environment:
+      POSTGRES_DB: vrproduction_db
+      POSTGRES_USER: vrproduction_user
+      POSTGRES_PASSWORD: HsTC&nS8*U123kjds&$N3raT01
+
+  adminer:
+        image: adminer
+        restart: always
+        ports:
+            - 8080:8080 

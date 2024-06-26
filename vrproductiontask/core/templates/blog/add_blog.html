@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block css %}
+<script src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
+<script src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
+<style>
+    .test{
+        display: block !important;
+        -webkit-tap-highlight-color: transparent;
+        background-color: #fff;
+        border-radius: 5px;
+        border: solid 1px #e8e8e8;
+        box-sizing: border-box;
+        clear: both;
+        cursor: pointer;
+        display: block;
+        float: left;
+        font-family: inherit;
+        font-size: 14px;
+        font-weight: normal;
+        height: 42px;
+        line-height: 40px;
+        outline: none;
+        padding-left: 18px;
+        padding-right: 30px;
+        position: relative;
+        text-align: left !important;
+        -webkit-transition: all 0.2s ease-in-out;
+        transition: all 0.2s ease-in-out;
+        -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+                user-select: none;
+        white-space: nowrap;
+        width: auto; 
+    }
+    .nice-select{
+        display: none !important;
+    }   
+</style>
+{% endblock %}
+{% block content %}
+<main>
+    <div class="about-area2 gray-bg pt-60 pb-60">
+        <div class="container">
+                <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="whats-news-wrapper">
+                        <!-- Heading & Nav Button -->
+                            <!-- Tab content -->
+                            <div class="row">
+                                <div class="col-12">
+                                    <!-- Nav Card -->
+                                    <form action="{% url 'blog_create' %}" method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        {{ form.non_field_errors }}
+										{% for field in form %}
+								    		<div class="form-group" style="display: flex; flex-direction: column;">
+                                                {% if field.name == "title" %}
+												    {% render_field field class="single-input" placeholder=field.label %}
+                                                {% endif %}
+                                                {% if field.name == "category" %}
+                                                    {{field.label}}:
+												    {% render_field field  placeholder=field.label class="test" %}
+                                                {% endif %}
+                                                {% if field.name == "image" %}
+												    {% render_field field class="single-input" placeholder=field.label style="margin-top:10px;" %}
+                                                {% endif %}
+                                                {% if field.name == "description" %}
+												    {% render_field field class="single-input" placeholder=field.label %}
+                                                {% endif %}
+                                                {% if field.name == "content" %}
+												    {% render_field field class="single-input" placeholder=field.label %}
+                                                {% endif %}
+                                                {% if field.name == "tags" %}
+                                                    {{field.label}}:
+												    {% render_field field placeholder=field.label class="test" %}
+                                                {% endif %}
+                                                
+												<ul>
+													{% for error in field.errors %}
+				    									<li>{{error}}</li>
+													{% endfor %}
+												</ul>
+											</div>
+										{% endfor %}
+                                        <button type="submit" name='submit' class="genric-btn info-border mt-10"
+														>Save</button>
+                                    </form>
+                                <!-- End Nav Card -->
+                                </div>
+                            </div>
+                    </div>
+                    </div>
+                    
+                </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
