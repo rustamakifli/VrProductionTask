@@ -25,7 +25,7 @@ urlpatterns = [
     path('', include('core.urls')),
     path('', include('users.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
-    path('',lambda request: redirect('blogs'),permanent=True),
+    path('',lambda request: redirect('blogs')),
 
 ]
 

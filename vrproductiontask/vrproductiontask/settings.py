@@ -84,17 +84,27 @@ WSGI_APPLICATION = 'vrproductiontask.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
+ENV = os.environ.get('ENV', 'local')
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('POSTGRES_DB', 'vrproduction_db'),
-        'USER': os.environ.get('POSTGRES_USER', 'vrproduction_user'),
-        'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'HsTC&nS8*U123kjds&$N3raT01'),
-        'PORT':  os.environ.get('POSTGRES_PORT', 5432),
-        'HOST': os.environ.get('POSTGRES_HOST', 'postgres'),
+if ENV == 'local':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
+else:
+
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.environ.get('POSTGRES_DB', 'vrproduction_db'),
+            'USER': os.environ.get('POSTGRES_USER', 'vrproduction_user'),
+            'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'HsTC&nS8*U123kjds&$N3raT01'),
+            'PORT':  os.environ.get('POSTGRES_PORT', 5432),
+            'HOST': os.environ.get('POSTGRES_HOST', 'postgres'),
+        }
+    }
 
 # DATABASES = {
 #     'default': {
