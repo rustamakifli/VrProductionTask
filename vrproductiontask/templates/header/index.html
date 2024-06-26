@@ -60,7 +60,8 @@
                                         <a href="{% url 'account' %}"><i class="fa fa-user"></i></a>
                                         <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i></a>
                                     {% else %}
-                                        <a href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i></a>
+                                        <a href="{% url 'login' %}">Login</a>
+                                        <a href="{% url 'register' %}">Register</a>
                                     {% endif %}
                                 </div>
                             </div>
