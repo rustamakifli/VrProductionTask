@@ -18,7 +18,6 @@ class BlogDetailView(DetailView, CreateView):
 
     def form_valid(self, form):
         form.instance.slug = self.kwargs['slug']
-        print("blgsdsd",form.instance.blog)
         form.instance.blog = Blog.objects.get(slug=self.kwargs['slug'])
         form.instance.author = self.request.user
         try:
